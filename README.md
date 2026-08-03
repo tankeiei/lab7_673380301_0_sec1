@@ -29,6 +29,7 @@
 - สร้างโปรเจค Spring Boot (`DemoApplication.java` และ Package structure)
 - สร้าง **Entity** (Model) ที่ map กับตาราง Database
 - สร้าง **Repository** สำหรับเข้าถึงข้อมูล (Data Access Layer)
+- สร้าง **Service** สำหรับจัดการ Business Logic (Service Layer)
 - สร้าง **Controller** ที่ทำ CRUD ครบทุกฟังก์ชัน โดยใช้ **Constructor Injection**
 - เขียนอธิบาย **Software Design & GRASP Patterns** และ **Execution Flow** ในเล่มรายงาน
 - ตั้งค่า **Database Connection** ใน `application.properties`
@@ -85,6 +86,8 @@ src/main/java/com/example/demo/   ← ❌ นักศึกษาสร้า�
 │   └── Game.java                 ← ❌ นักศึกษาสร้างเอง
 ├── repository/
 │   └── GameRepository.java       ← ❌ นักศึกษาสร้างเอง
+├── service/
+│   └── GameService.java          ← ❌ นักศึกษาสร้างเอง
 └── controller/
     └── GameController.java       ← ❌ นักศึกษาสร้างเอง
 
@@ -192,10 +195,11 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 1. **ลิ้งค์ Git Repository** — Push โปรเจคที่ทำเสร็จขึ้น GitHub/GitLab ส่วนตัว
 2. **ไฟล์ PDF เล่มรายงาน** อธิบายขั้นตอนการทำงาน พร้อมแคปภาพประกอบ ดังนี้:
    - **ส่วนที่ 1: Software Design & Principles Explanation (เขียนอธิบาย)**
-     - 🧠 **อธิบายสถาปัตยกรรมและ GRASP Patterns:** เขียนอธิบายการแบ่งหน้าที่ของคลาส (Entity, Repository, Controller) ตามหลัก **GRASP Patterns** (เช่น Controller Pattern, High Cohesion, Low Coupling, Information Expert)
+     - 🧠 **อธิบายสถาปัตยกรรมและ GRASP Patterns:** เขียนอธิบายการแบ่งหน้าที่ของคลาส (Entity, Repository, Service, Controller) ตามหลัก **GRASP Patterns** (เช่น Controller Pattern, High Cohesion, Low Coupling, Information Expert, Indirection)
+     - 🏗️ **อธิบาย Layered Architecture:** เขียนอธิบายว่าทำไมต้องแยก Service Layer ออกจาก Controller และ Repository ประโยชน์ด้าน **Low Coupling** และ **High Cohesion**
      - 🔄 **อธิบาย Execution Flow:** เขียนอธิบายลำดับการทำงาน (Flow) เมื่อมี HTTP Request เข้ามาจาก Browser จนไปถึงการบันทึก/ดึงข้อมูลจาก PostgreSQL อย่างน้อย 1 ฟังก์ชัน (เช่น ขั้นตอนการทำงานเมื่อกดบันทึกเกม `/games/save`)
    - **ส่วนที่ 2: Code Implementation & Explanation**
-     - โครงสร้าง Code พร้อมคำอธิบาย (Entity, Repository, Controller) โดยอธิบายการใช้ **Dependency Injection (Constructor Injection)**
+     - โครงสร้าง Code พร้อมคำอธิบาย (Entity, Repository, Service, Controller) โดยอธิบายการใช้ **Dependency Injection (Constructor Injection)** ในทุก Layer
    - **ส่วนที่ 3: Web Application & Database Screenshots**
      - หน้าจอแสดงรายการเกมทั้งหมด (Read)
      - หน้าจอเพิ่มเกมใหม่ (Create) + ผลลัพธ์หลังเพิ่ม
@@ -209,10 +213,11 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 
 | หัวข้อ | คะแนน | รายละเอียด |
 |--------|--------|-----------|
-| **Software Design Principles** | 25% | เขียนอธิบายหลักการออกแบบซอฟต์แวร์, GRASP Patterns และ Execution Flow ได้ถูกต้องชัดเจน |
+| **Software Design Principles** | 25% | เขียนอธิบายหลักการออกแบบซอฟต์แวร์, GRASP Patterns, Layered Architecture และ Execution Flow ได้ถูกต้องชัดเจน |
 | **Entity / Model** | 15% | สร้าง Entity ถูกต้องตามหลัก JPA และ Object-Relational Mapping (ORM) |
 | **Repository & Data Access** | 10% | ออกแบบ Repository Interface และการจัดการ Data Access Layer ถูกต้อง |
-| **Controller & MVC Design** | 30% | ควบคุม Flow ด้วย Spring MVC, ใช้ Constructor Injection (DI) และทำ CRUD ครบ 4 ฟังก์ชัน |
+| **Service Layer** | 10% | สร้าง Service แยก Business Logic ออกจาก Controller ใช้ Constructor Injection ถูกต้อง |
+| **Controller & MVC Design** | 20% | ควบคุม Flow ด้วย Spring MVC, ใช้ Constructor Injection (DI) เรียกผ่าน Service Layer และทำ CRUD ครบ 4 ฟังก์ชัน |
 | **Database Connectivity** | 10% | เชื่อมต่อ PostgreSQL สำเร็จ ข้อมูลถูกจัดเก็บจริงในฐานข้อมูล |
 | **PDF Report Quality** | 10% | เล่มรายงานเรียบร้อย อธิบายแนวคิดการออกแบบและมีภาพประกอบครบถ้วน |
 | **รวม** | **100%** | |
