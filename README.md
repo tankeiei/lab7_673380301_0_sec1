@@ -10,15 +10,16 @@
 
 1. นักศึกษาสามารถสร้าง Spring Boot Project ด้วยตัวเอง และเชื่อมต่อกับฐานข้อมูล PostgreSQL ได้
 2. นักศึกษาเข้าใจหลักการ MVC (Model-View-Controller) และการประยุกต์ใช้ **GRASP Patterns** (Controller, Low Coupling, High Cohesion, Information Expert)
-3. นักศึกษาสามารถประยุกต์ใช้ **Dependency Injection (DI)** และเข้าใจ **Bean Lifecycle** ใน Spring Framework
-4. นักศึกษาสามารถสร้าง Entity, Repository, Controller เพื่อทำ CRUD (Create, Read, Update, Delete) ร่วมกับ Spring Data JPA ได้
-5. นักศึกษาสามารถเขียนอธิบายสถาปัตยกรรมซอฟต์แวร์, GRASP Patterns และลำดับการทำงาน (Execution Flow) ของระบบได้
+3. นักศึกษาเข้าใจและสามารถประยุกต์ใช้ **Design Patterns (Strategy Pattern)** ในการคำนวณราคาสินค้า/ส่วนลดโปรโมชั่น
+4. นักศึกษาเข้าใจและสามารถประยุกต์ใช้ **High-level SOLID Principles** (SRP, OCP, LSP, ISP, DIP) ร่วมกับ **Dependency Injection (DI)** ใน Spring Framework
+5. นักศึกษาสามารถสร้าง Entity, Repository, Service, Strategy, Controller เพื่อทำ CRUD (Create, Read, Update, Delete) ร่วมกับ Spring Data JPA ได้
+6. นักศึกษาสามารถเขียนอธิบายสถาปัตยกรรมซอฟต์แวร์, GRASP Patterns, SOLID Principles, Strategy Pattern และลำดับการทำงาน (Execution Flow) ของระบบได้
 
 ---
 
 ## 🎯 โจทย์
 
-สร้างเว็บแอปพลิเคชัน **"Game Catalog"** สำหรับจัดการข้อมูลเกม โดยปฏิบัติตามหลักการออกแบบซอฟต์แวร์ (Principles of Software Design) และมีความสามารถ CRUD ครบ 4 ฟังก์ชัน
+สร้างเว็บแอปพลิเคชัน **"Game Catalog"** สำหรับจัดการข้อมูลเกม โดยปฏิบัติตามหลักการออกแบบซอฟต์แวร์ (Principles of Software Design), ประยุกต์ใช้ **Strategy Pattern** ในการคำนวณราคา และมีความสามารถ CRUD ครบ 4 ฟังก์ชัน
 
 **สิ่งที่ให้:**
 - ไฟล์ Thymeleaf Templates ครบ 4 หน้า (`list.html`, `add.html`, `edit.html`, `delete.html`)
@@ -29,9 +30,10 @@
 - สร้างโปรเจค Spring Boot (`DemoApplication.java` และ Package structure)
 - สร้าง **Entity** (Model) ที่ map กับตาราง Database
 - สร้าง **Repository** สำหรับเข้าถึงข้อมูล (Data Access Layer)
+- สร้าง **Strategy Package** (`DiscountStrategy`, `NoDiscountStrategy`, `StudentDiscountStrategy`, `SeasonalSaleStrategy`, `DiscountContext`) สำหรับการคำนวณราคาโปรโมชั่น (**Strategy Pattern**)
 - สร้าง **Service** สำหรับจัดการ Business Logic (Service Layer)
 - สร้าง **Controller** ที่ทำ CRUD ครบทุกฟังก์ชัน โดยใช้ **Constructor Injection**
-- เขียนอธิบาย **Software Design & GRASP Patterns** และ **Execution Flow** ในเล่มรายงาน
+- เขียนอธิบาย **Software Design, GRASP Patterns, SOLID Principles, Strategy Pattern** และ **Execution Flow** ในเล่มรายงาน
 - ตั้งค่า **Database Connection** ใน `application.properties`
 - ติดตั้งและสร้าง **Database** ใน PostgreSQL
 
@@ -94,7 +96,7 @@ Templates อ้างถึง field ต่อไปนี้ — Entity ขอ
 
 ---
 
-## 📂 โครงสร้างโปรเจค (ที่สมบูรณ์แล้ว)  ← ❌ นักศึกษาสร้างโปรเจคเอง
+## 📂 โครงสร้างโปรเจค (ที่สมบูรณ์แล้ว)  ← ❌ ให้นักศึกษาสร้างโปรเจคเอง
 
 ```
 src/main/java/com/example/demo/   ← ❌ นักศึกษาสร้างเอง
@@ -103,6 +105,12 @@ src/main/java/com/example/demo/   ← ❌ นักศึกษาสร้า�
 │   └── Game.java                 ← ❌ นักศึกษาสร้างเอง
 ├── repository/
 │   └── GameRepository.java       ← ❌ นักศึกษาสร้างเอง
+├── strategy/                     ← ❌ นักศึกษาสร้างเอง (Strategy Pattern)
+│   ├── DiscountStrategy.java
+│   ├── NoDiscountStrategy.java
+│   ├── StudentDiscountStrategy.java
+│   ├── SeasonalSaleStrategy.java
+│   └── DiscountContext.java
 ├── service/
 │   └── GameService.java          ← ❌ นักศึกษาสร้างเอง
 └── controller/
@@ -213,10 +221,12 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 2. **ไฟล์ PDF เล่มรายงาน** อธิบายขั้นตอนการทำงาน พร้อมแคปภาพประกอบ ดังนี้:
    - **ส่วนที่ 1: Software Design & Principles Explanation (เขียนอธิบาย)**
      - 🧠 **อธิบายสถาปัตยกรรมและ GRASP Patterns:** เขียนอธิบายการแบ่งหน้าที่ของคลาส (Entity, Repository, Service, Controller) ตามหลัก **GRASP Patterns** (เช่น Controller Pattern, High Cohesion, Low Coupling, Information Expert, Indirection)
+     - 🎯 **อธิบาย High-Level SOLID Principles:** เขียนอธิบายการประยุกต์ใช้หลักการ SOLID (SRP, OCP, LSP, ISP, DIP) ในระบบ
+     - 🧩 **อธิบาย Strategy Pattern:** เขียนอธิบายการประยุกต์ใช้ **Strategy Pattern** ในการคำนวณส่วนลดราคาเกม (`DiscountStrategy`, `NoDiscountStrategy`, `StudentDiscountStrategy`, `SeasonalSaleStrategy`, `DiscountContext`) พร้อมประโยชน์ด้าน Open/Closed Principle (OCP)
      - 🏗️ **อธิบาย Layered Architecture:** เขียนอธิบายว่าทำไมต้องแยก Service Layer ออกจาก Controller และ Repository ประโยชน์ด้าน **Low Coupling** และ **High Cohesion**
-     - 🔄 **อธิบาย Execution Flow:** เขียนอธิบายลำดับการทำงาน (Flow) เมื่อมี HTTP Request เข้ามาจาก Browser จนไปถึงการบันทึก/ดึงข้อมูลจาก PostgreSQL อย่างน้อย 1 ฟังก์ชัน (เช่น ขั้นตอนการทำงานเมื่อกดบันทึกเกม `/games/save`)
+     - 🔄 **อธิบาย Execution Flow:** เขียนอธิบายลำดับการทำงาน (Flow) เมื่อมี HTTP Request เข้ามาจาก Browser จนไปถึงการบันทึก/ดึงข้อมูลจาก PostgreSQL และคำนวณส่วนลดผ่าน Strategy Pattern
    - **ส่วนที่ 2: Code Implementation & Explanation**
-     - โครงสร้าง Code พร้อมคำอธิบาย (Entity, Repository, Service, Controller) โดยอธิบายการใช้ **Dependency Injection (Constructor Injection)** ในทุก Layer
+     - โครงสร้าง Code พร้อมคำอธิบาย (Entity, Repository, Strategy Package, Service, Controller) โดยอธิบายการใช้ **Dependency Injection (Constructor Injection)** ในทุก Layer
    - **ส่วนที่ 3: Web Application & Database Screenshots**
      - 📌 **ข้อกำหนดสำคัญ:** ในขั้นตอนการเพิ่มเกมใหม่ **นักศึกษาต้องใส่รหัสนักศึกษาและ Section ของตนเอง** ลงในข้อมูลเกม (เช่น ในช่องชื่อเกม `Title` หรือแนวเกม `Genre` เช่น `Elden Ring (663380123-4 Sec 1)`)
      - หน้าจอเพิ่มเกมใหม่ (Create) ที่กำลังกรอกข้อมูลที่มีรหัสนักศึกษา + Section
@@ -231,11 +241,12 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 
 | หัวข้อ | คะแนน | รายละเอียด |
 |--------|--------|-----------|
-| **Software Design Principles** | 25% | เขียนอธิบายหลักการออกแบบซอฟต์แวร์, GRASP Patterns, Layered Architecture และ Execution Flow ได้ถูกต้องชัดเจน |
-| **Entity / Model** | 15% | สร้าง Entity ถูกต้องตามหลัก JPA และ Object-Relational Mapping (ORM) |
+| **Software Design Principles & SOLID** | 20% | เขียนอธิบายหลักการออกแบบซอฟต์แวร์, GRASP Patterns, SOLID Principles (SRP, OCP, LSP, ISP, DIP) และ Layered Architecture ได้ถูกต้องชัดเจน |
+| **Strategy Pattern Implementation** | 15% | ออกแบบและสร้าง Strategy Pattern ในการคำนวณส่วนลดได้อย่างถูกต้อง สอดคล้องกับหลัก OCP และ DIP |
+| **Entity / Model** | 10% | สร้าง Entity ถูกต้องตามหลัก JPA และ Object-Relational Mapping (ORM) |
 | **Repository & Data Access** | 10% | ออกแบบ Repository Interface และการจัดการ Data Access Layer ถูกต้อง |
-| **Service Layer** | 10% | สร้าง Service แยก Business Logic ออกจาก Controller ใช้ Constructor Injection ถูกต้อง |
-| **Controller & MVC Design** | 20% | ควบคุม Flow ด้วย Spring MVC, ใช้ Constructor Injection (DI) เรียกผ่าน Service Layer และทำ CRUD ครบ 4 ฟังก์ชัน |
+| **Service Layer** | 10% | สร้าง Service แยก Business Logic ออกจาก Controller เรียกใช้งาน Strategy Context และใช้ Constructor Injection ถูกต้อง |
+| **Controller & MVC Design** | 15% | ควบคุม Flow ด้วย Spring MVC, ใช้ Constructor Injection (DI) เรียกผ่าน Service Layer และทำ CRUD ครบ 4 ฟังก์ชัน |
 | **Database Connectivity** | 10% | เชื่อมต่อ PostgreSQL สำเร็จ ข้อมูลถูกจัดเก็บจริงในฐานข้อมูล |
 | **PDF Report Quality** | 10% | เล่มรายงานเรียบร้อย อธิบายแนวคิดการออกแบบและมีภาพประกอบครบถ้วน |
 | **รวม** | **100%** | |
