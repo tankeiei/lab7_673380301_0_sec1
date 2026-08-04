@@ -247,6 +247,8 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
      - หน้าจอ Database (pgAdmin หรือ terminal `psql`) แสดงข้อมูลจริงในตาราง `games` ที่มีรหัสนักศึกษาบันทึกอยู่
 
 ---
+<img width="1917" height="732" alt="image" src="https://github.com/user-attachments/assets/e806e760-6c6f-4c1d-bcbf-d6dfc231e7fa" />
+ตัวอย่าง http://localhost:8080/games
 
 ## 📊 เกณฑ์การให้คะแนน (Software Design Focused)
 
