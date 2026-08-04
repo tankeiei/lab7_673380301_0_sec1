@@ -62,21 +62,31 @@
                             </div>
                         </div>
 
-                        <!-- Rating + Price -->
+                        <!-- Rating + Price + Discount Strategy -->
                         <div class="row">
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-4 mb-3">
                                 <label for="rating" class="form-label">
                                     <i class="bi bi-star me-1"></i>คะแนน (Rating)
                                 </label>
                                 <input type="number" id="rating" th:field="*{rating}" class="form-control"
                                        step="0.1" min="0" max="10" required>
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-4 mb-3">
                                 <label for="price" class="form-label">
-                                    <i class="bi bi-currency-exchange me-1"></i>ราคา (บาท)
+                                    <i class="bi bi-currency-exchange me-1"></i>ราคาปกติ (บาท)
                                 </label>
                                 <input type="number" id="price" th:field="*{price}" class="form-control"
                                        step="0.01" min="0" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="discountType" class="form-label">
+                                    <i class="bi bi-percent me-1"></i>ส่วนลด (Strategy)
+                                </label>
+                                <select id="discountType" th:field="*{discountType}" class="form-select">
+                                    <option value="NONE">ราคาปกติ (0%)</option>
+                                    <option value="STUDENT">ส่วนลดนักศึกษา (10%)</option>
+                                    <option value="SEASONAL">ส่วนลดเทศกาล (20%)</option>
+                                </select>
                             </div>
                         </div>
 

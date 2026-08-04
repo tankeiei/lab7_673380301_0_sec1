@@ -51,7 +51,8 @@
                                 <th>แพลตฟอร์ม</th>
                                 <th>คะแนน</th>
                                 <th>วันวางจำหน่าย</th>
-                                <th>ราคา (บาท)</th>
+                                <th>โปรโมชั่น (Strategy)</th>
+                                <th>ราคาสุทธิ (บาท)</th>
                                 <th class="text-center" style="width: 120px;">จัดการ</th>
                             </tr>
                         </thead>
@@ -70,7 +71,13 @@
                                     <span th:text="${#numbers.formatDecimal(game.rating, 1, 1)}">4.5</span>
                                 </td>
                                 <td th:text="${#temporals.format(game.releaseDate, 'dd/MM/yyyy')}">01/01/2025</td>
-                                <td th:text="${#numbers.formatDecimal(game.price, 1, 2)}">1990.00</td>
+                                <td>
+                                    <span class="badge badge-platform" th:text="${game.discountName}">ราคาปกติ</span>
+                                </td>
+                                <td>
+                                    <span class="fw-bold text-cyan" th:text="${#numbers.formatDecimal(game.finalPrice, 1, 2)}">1990.00</span>
+                                    <small th:if="${game.price != game.finalPrice}" class="text-secondary text-decoration-line-through ms-1" th:text="${#numbers.formatDecimal(game.price, 1, 2)}">1990.00</small>
+                                </td>
                                 <td class="text-center">
                                     <div class="btn-group btn-group-sm" role="group">
                                         <a th:href="@{/games/edit/{id}(id=${game.id})}"
