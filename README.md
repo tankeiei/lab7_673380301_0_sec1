@@ -70,7 +70,8 @@ Templates อ้างถึง field ต่อไปนี้ — Entity ขอ
 | `platform` | String | แพลตฟอร์ม เช่น PC, PS5, Switch |
 | `rating` | Double | คะแนน (0.0 - 10.0) |
 | `releaseDate` | LocalDate | วันวางจำหน่าย |
-| `price` | Double | ราคา (บาท) |
+| `price` | Double | ราคาปกติ (บาท) |
+| `discountType` | String | ประเภทส่วนลด (Strategy Pattern) เช่น `NONE`, `STUDENT`, `SEASONAL` |
 
 ### URL Mappings ที่ Templates ใช้
 
@@ -106,11 +107,11 @@ src/main/java/com/example/demo/   ← ❌ นักศึกษาสร้า�
 ├── repository/
 │   └── GameRepository.java       ← ❌ นักศึกษาสร้างเอง
 ├── strategy/                     ← ❌ นักศึกษาสร้างเอง (Strategy Pattern)
-│   ├── DiscountStrategy.java (มีส่วนลด)
-│   ├── NoDiscountStrategy.java (ไม่มีส่วนลด)
-│   ├── StudentDiscountStrategy.java (มีส่วนลด10%)
-│   ├── SeasonalSaleStrategy.java (มีส่วนลด20%)
-│   └── DiscountContext.java ( ทำหน้าที่สวิตช์เลือก Strategy )
+│   ├── DiscountStrategy.java
+│   ├── NoDiscountStrategy.java
+│   ├── StudentDiscountStrategy.java
+│   ├── SeasonalSaleStrategy.java
+│   └── DiscountContext.java
 ├── service/
 │   └── GameService.java          ← ❌ นักศึกษาสร้างเอง
 └── controller/
@@ -229,6 +230,16 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
      - โครงสร้าง Code พร้อมคำอธิบาย (Entity, Repository, Strategy Package, Service, Controller) โดยอธิบายการใช้ **Dependency Injection (Constructor Injection)** ในทุก Layer
    - **ส่วนที่ 3: Web Application & Database Screenshots**
      - 📌 **ข้อกำหนดสำคัญ:** ในขั้นตอนการเพิ่มเกมใหม่ **นักศึกษาต้องใส่รหัสนักศึกษาและ Section ของตนเอง** ลงในข้อมูลเกม (เช่น ในช่องชื่อเกม `Title` หรือแนวเกม `Genre` เช่น `Elden Ring (663380123-4 Sec 1)`)
+          ### ตัวอย่างการกรอกข้อมูล
+
+      * **ชื่อเกม (Title):** `Elden Ring (663380123-4 SEC 1)`
+      * **แนวเกม (Genre):** `Action RPG`
+      * **แพลตฟอร์ม (Platform):** `PC / PS5`
+      * **คะแนน (Rating):** `9.8`
+      * **ราคาปกติ (บาท):** `1790.00`
+      * **ส่วนลด (Strategy):** `ส่วนลดนักศึกษา (10%)` *(ระบบจะคำนวณราคาสุทธิอัตโนมัติเป็น 1,611.00 บาท)*(ให้ถ่ายภาพหน้าจอ)
+      * **ส่วนลด (Strategy):** `ส่วนลดเทศกาล (20%)` *(ระบบจะคำนวณราคาสุทธิอัตโนมัติเป็น 1,432.00 บาท)*(ให้ถ่ายภาพหน้าจอ)
+      * **วันวางจำหน่าย (Release Date):** `2022-02-25`
      - หน้าจอเพิ่มเกมใหม่ (Create) ที่กำลังกรอกข้อมูลที่มีรหัสนักศึกษา + Section
      - หน้าจอแสดงรายการเกมทั้งหมด (Read) ที่เห็นแถบแจ้งเตือนสีเขียวสำเร็จ และข้อมูลเกมที่มีรหัสนักศึกษาในตาราง
      - หน้าจอแก้ไขเกม (Update) แสดงฟอร์มแก้ไขข้อมูลเกม
