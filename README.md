@@ -106,11 +106,11 @@ src/main/java/com/example/demo/   ← ❌ นักศึกษาสร้า�
 ├── repository/
 │   └── GameRepository.java       ← ❌ นักศึกษาสร้างเอง
 ├── strategy/                     ← ❌ นักศึกษาสร้างเอง (Strategy Pattern)
-│   ├── DiscountStrategy.java
-│   ├── NoDiscountStrategy.java
-│   ├── StudentDiscountStrategy.java
-│   ├── SeasonalSaleStrategy.java
-│   └── DiscountContext.java
+│   ├── DiscountStrategy.java (มีส่วนลด)
+│   ├── NoDiscountStrategy.java (ไม่มีส่วนลด)
+│   ├── StudentDiscountStrategy.java (มีส่วนลด10%)
+│   ├── SeasonalSaleStrategy.java (มีส่วนลด20%)
+│   └── DiscountContext.java (คำราคาส่วนลด)
 ├── service/
 │   └── GameService.java          ← ❌ นักศึกษาสร้างเอง
 └── controller/
