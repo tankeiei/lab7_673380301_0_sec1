@@ -110,7 +110,7 @@ src/main/java/com/example/demo/   ← ❌ นักศึกษาสร้า�
 │   ├── NoDiscountStrategy.java (ไม่มีส่วนลด)
 │   ├── StudentDiscountStrategy.java (มีส่วนลด10%)
 │   ├── SeasonalSaleStrategy.java (มีส่วนลด20%)
-│   └── DiscountContext.java (คำราคาส่วนลด)
+│   └── DiscountContext.java ( ทำหน้าที่สวิตช์เลือก Strategy )
 ├── service/
 │   └── GameService.java          ← ❌ นักศึกษาสร้างเอง
 └── controller/
