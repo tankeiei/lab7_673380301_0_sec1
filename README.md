@@ -218,11 +218,12 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
    - **ส่วนที่ 2: Code Implementation & Explanation**
      - โครงสร้าง Code พร้อมคำอธิบาย (Entity, Repository, Service, Controller) โดยอธิบายการใช้ **Dependency Injection (Constructor Injection)** ในทุก Layer
    - **ส่วนที่ 3: Web Application & Database Screenshots**
-     - หน้าจอแสดงรายการเกมทั้งหมด (Read)
-     - หน้าจอเพิ่มเกมใหม่ (Create) + ผลลัพธ์หลังเพิ่ม
-     - หน้าจอแก้ไขเกม (Update) + ผลลัพธ์หลังแก้ไข
+     - 📌 **ข้อกำหนดสำคัญ:** ในขั้นตอนการเพิ่มเกมใหม่ **นักศึกษาต้องใส่รหัสนักศึกษาและ Section ของตนเอง** ลงในข้อมูลเกม (เช่น ในช่องชื่อเกม `Title` หรือแนวเกม `Genre` เช่น `Elden Ring (663380123-4 Sec 1)`)
+     - หน้าจอเพิ่มเกมใหม่ (Create) ที่กำลังกรอกข้อมูลที่มีรหัสนักศึกษา + Section
+     - หน้าจอแสดงรายการเกมทั้งหมด (Read) ที่เห็นแถบแจ้งเตือนสีเขียวสำเร็จ และข้อมูลเกมที่มีรหัสนักศึกษาในตาราง
+     - หน้าจอแก้ไขเกม (Update) แสดงฟอร์มแก้ไขข้อมูลเกม
      - หน้าจอยืนยันลบ + ผลลัพธ์หลังลบ (Delete)
-     - หน้าจอ Database (pgAdmin หรือ terminal) แสดงข้อมูลในตาราง
+     - หน้าจอ Database (pgAdmin หรือ terminal `psql`) แสดงข้อมูลจริงในตาราง `games` ที่มีรหัสนักศึกษาบันทึกอยู่
 
 ---
 
