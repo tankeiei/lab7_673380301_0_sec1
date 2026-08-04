@@ -1,7 +1,7 @@
 # 🎮 Lab 7: Database Connectivity — Game Catalog CRUD
 
 **วิชา:** CP353002 Principles of Software Design  
-**เรื่อง:** การเชื่อมต่อฐานข้อมูลด้วย Spring Boot + JPA + PostgreSQL  
+**เรื่อง:** การเชื่อมต่อฐานข้อมูลด้วย Spring Boot + JPA + JDBC + PostgreSQL   
 **รูปแบบ:** ทำเดี่ยว
 
 ---
@@ -256,7 +256,7 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 |--------|--------|-----------|
 | **Software Design Principles & SOLID** | 20% | เขียนอธิบายหลักการออกแบบซอฟต์แวร์, GRASP Patterns, SOLID Principles (SRP, OCP, LSP, ISP, DIP) และ Layered Architecture ได้ถูกต้องชัดเจน |
 | **Strategy Pattern Implementation** | 15% | ออกแบบและสร้าง Strategy Pattern ในการคำนวณส่วนลดได้อย่างถูกต้อง สอดคล้องกับหลัก OCP และ DIP |
-| **Entity / Model** | 10% | สร้าง Entity ถูกต้องตามหลัก JPA และ Object-Relational Mapping (ORM) |
+| **Entity / Model** | 10% | สร้าง Entity ถูกต้องตามหลัก JPA,JBDC และ Object-Relational Mapping (ORM) |
 | **Repository & Data Access** | 10% | ออกแบบ Repository Interface และการจัดการ Data Access Layer ถูกต้อง |
 | **Service Layer** | 10% | สร้าง Service แยก Business Logic ออกจาก Controller เรียกใช้งาน Strategy Context และใช้ Constructor Injection ถูกต้อง |
 | **Controller & MVC Design** | 15% | ควบคุม Flow ด้วย Spring MVC, ใช้ Constructor Injection (DI) เรียกผ่าน Service Layer และทำ CRUD ครบ 4 ฟังก์ชัน |
