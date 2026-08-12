@@ -268,5 +268,12 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 
 > **หมายเหตุ:** นักศึกษาสามารถปรับแต่งหน้าเว็บเพิ่มเติมได้ตามต้องการ แต่ฟังก์ชัน CRUD และหลักการออกแบบต้องถูกต้องตามหลักการ Principles of Software Design
 
+---
 
+## 📸 ตัวอย่างหน้าจอระบบที่พัฒนาแล้ว (Completed Application Screenshots)
 
+### หน้าแสดงรายการเกมทั้งหมด (Game Catalog List — `http://localhost:8080/games`)
+
+![Game Catalog Web Application](docs/screenshots/app_preview.png)
+
+*รูปแสดงหน้าตารางรายการเกมที่มีรหัสนักศึกษา 673380301-0 SEC 1 พร้อมผลลัพธ์การคำนวณราคาสุทธิผ่าน Strategy Pattern (ราคาปกติ 0%, ส่วนลดนักศึกษา 10%, ส่วนลดเทศกาล 20%)*
